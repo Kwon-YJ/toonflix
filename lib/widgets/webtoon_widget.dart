@@ -1,5 +1,4 @@
 import "package:flutter/material.dart";
-import "package:flutter/src/widgets/framework.dart";
 import "package:toonflix/screens/detail_screen.dart";
 
 class Webtoon extends StatelessWidget {
@@ -32,7 +31,9 @@ class Webtoon extends StatelessWidget {
               Hero(
                 tag: id,
                 child: Container(
-                  child: Image.network(thumb),
+                  child: Image.network(thumb,
+                  headers: const {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36",},
+                  ),
                   width: 250,
                   clipBehavior: Clip.hardEdge,
                   decoration: BoxDecoration(

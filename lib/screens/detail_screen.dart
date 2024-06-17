@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:toonflix/models/webtoon_detail_model.dart';
 import 'package:toonflix/models/webtoon_episode_model.dart';
 import 'package:toonflix/service/api_service.dart';
 import 'package:toonflix/widgets/episode_widget.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class DetailScreen extends StatefulWidget {
   final String title, thumb, id;
@@ -26,7 +24,6 @@ class _DetailScreenState extends State<DetailScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     webtoon = ApiService.getToonById(widget.id);
     episodes = ApiService.getLatesEpisodesById(widget.id);
@@ -57,7 +54,9 @@ class _DetailScreenState extends State<DetailScreen> {
                   Hero(
                     tag: widget.id,
                     child: Container(
-                      child: Image.network(widget.thumb),
+                      child: Image.network(widget.thumb,
+                        headers: const {"User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36",},
+                      ),
                       width: 250,
                       clipBehavior: Clip.hardEdge,
                       decoration: BoxDecoration(
